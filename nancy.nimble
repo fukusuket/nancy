@@ -13,3 +13,4 @@ skipFiles     = @["example.png"]
 
 requires "nim >= 1.0.0"
 requires "ansiparse >= 0.2.0"
+requires "termstyle"

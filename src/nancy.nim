@@ -1,6 +1,8 @@
 import sequtils, ansiparse, terminal, algorithm
+import terminal
+import termstyle
 import unicode except repeat
-from strutils import Whitespace, tokenize, split, repeat, join
+from strutils import Whitespace, tokenize, split, repeat, join, startsWith, replace
 
 type
   TerminalTable* = object
@@ -192,6 +194,56 @@ template printSeparator*(position: untyped): untyped =
     else:
       stdout.write seps.`position Right` & "\n"
 
+proc styledWrite(txt: string) =
+  if txt.startsWith(termBlack):
+    stdout.styledWrite(termBlack, txt.replace(termBlack,""))
+  elif txt.startsWith(termRed):
+    stdout.styledWrite(termRed, txt.replace(termRed,""))
+  elif txt.startsWith(termGreen):
+    stdout.styledWrite(termGreen, txt.replace(termGreen,""))
+  elif txt.startsWith(termYellow):
+    stdout.styledWrite(termYellow, txt.replace(termYellow,""))
+  elif txt.startsWith(termBlue):
+    stdout.styledWrite(termBlue, txt.replace(termBlue,""))
+  elif txt.startsWith(termMagenta):
+    stdout.styledWrite(termMagenta, txt.replace(termMagenta,""))
+  elif txt.startsWith(termCyan):
+    stdout.styledWrite(termCyan, txt.replace(termCyan,""))
+  elif txt.startsWith(termWhite):
+    stdout.styledWrite(termWhite, txt.replace(termWhite,""))
+  elif txt.startsWith(termBgBlack):
+    stdout.styledWrite(termBgBlack, txt.replace(termBgBlack,""))
+  elif txt.startsWith(termBgRed):
+    stdout.styledWrite(termBgRed, txt.replace(termBgRed,""))
+  elif txt.startsWith(termBgGreen):
+    stdout.styledWrite(termBgGreen, txt.replace(termBgGreen,""))
+  elif txt.startsWith(termBgYellow):
+    stdout.styledWrite(termBgYellow, txt.replace(termBgYellow,""))
+  elif txt.startsWith(termBgBlue):
+    stdout.styledWrite(termBgYellow, txt.replace(termBgYellow,""))
+  elif txt.startsWith(termBgMagenta):
+    stdout.styledWrite(termBgMagenta, txt.replace(termBgMagenta,""))
+  elif txt.startsWith(termBgCyan):
+    stdout.styledWrite(termBgCyan, txt.replace(termBgCyan,""))
+  elif txt.startsWith(termBgWhite):
+    stdout.styledWrite(termBgWhite, txt.replace(termBgWhite,""))
+  elif txt.startsWith(termClear):
+    stdout.styledWrite(termClear, txt.replace(termClear,""))
+  elif txt.startsWith(termBold):
+    stdout.styledWrite(termBold, txt.replace(termBold,""))
+  elif txt.startsWith(termItalic):
+    stdout.styledWrite(termItalic, txt.replace(termItalic,""))
+  elif txt.startsWith(termUnderline):
+    stdout.styledWrite(termUnderline, txt.replace(termUnderline,""))
+  elif txt.startsWith(termBlink):
+    stdout.styledWrite(termBlink, txt.replace(termBlink,""))
+  elif txt.startsWith(termNegative):
+    stdout.styledWrite(termNegative, txt.replace(termNegative,""))
+  elif txt.startsWith(termStrikethrough):
+    stdout.styledWrite(termStrikethrough, txt.replace(termStrikethrough,""))
+  else:
+    stdout.write txt
+
 proc echoTableSeps*(table: TerminalTable, maxSize = terminalWidth(), seps = defaultSeps) =
   ## Writes out the table to the terminal with wrapping, styles, and
   ## separators. `maxSize` is the same as for `echoTable`, and `seps` is a
@@ -206,7 +258,7 @@ proc echoTableSeps*(table: TerminalTable, maxSize = terminalWidth(), seps = defa
     for _, row in entry():
       stdout.write seps.vertical & " "
       for i, cell in row():
-        stdout.write cell & (if i != sizes.high: " " & seps.vertical & " " else: "")
+        styledWrite cell & (if i != sizes.high: " " & seps.vertical & " " else: "")
       stdout.write " " & seps.vertical & "\n"
     if k != table.rows - 1:
       printSeparator(center)
@@ -222,7 +274,7 @@ proc echoTable*(table: TerminalTable, maxSize = terminalWidth(), padding = 1) =
   for _, entry in table.entries(sizes):
     for _, row in entry():
       for i, cell in row():
-        stdout.write cell & (if i != sizes.high: ' '.repeat(padding) else: "")
+        styledWrite cell & (if i != sizes.high: ' '.repeat(padding) else: "")
       stdout.write "\n"
 
 when isMainModule:
