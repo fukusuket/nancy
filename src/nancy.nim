@@ -196,51 +196,51 @@ template printSeparator*(position: untyped): untyped =
 
 proc styledWrite(txt: string) =
   if txt.startsWith(termBlack):
-    stdout.styledWrite(termBlack, txt.replace(termBlack,""))
+    stdout.styledWrite(fgBlack, txt.replace(termBlack,"").replace(termClear,""))
   elif txt.startsWith(termRed):
-    stdout.styledWrite(termRed, txt.replace(termRed,""))
+    stdout.styledWrite(fgRed, txt.replace(termRed,"").replace(termClear,""))
   elif txt.startsWith(termGreen):
-    stdout.styledWrite(termGreen, txt.replace(termGreen,""))
+    stdout.styledWrite(fgGreen, txt.replace(termGreen,"").replace(termClear,""))
   elif txt.startsWith(termYellow):
-    stdout.styledWrite(termYellow, txt.replace(termYellow,""))
+    stdout.styledWrite(fgYellow, txt.replace(termYellow,"").replace(termClear,""))
   elif txt.startsWith(termBlue):
-    stdout.styledWrite(termBlue, txt.replace(termBlue,""))
+    stdout.styledWrite(fgBlue, txt.replace(termBlue,"").replace(termClear,""))
   elif txt.startsWith(termMagenta):
-    stdout.styledWrite(termMagenta, txt.replace(termMagenta,""))
+    stdout.styledWrite(fgMagenta, txt.replace(termMagenta,"").replace(termClear,""))
   elif txt.startsWith(termCyan):
-    stdout.styledWrite(termCyan, txt.replace(termCyan,""))
+    stdout.styledWrite(fgCyan, txt.replace(termCyan,"").replace(termClear,""))
   elif txt.startsWith(termWhite):
-    stdout.styledWrite(termWhite, txt.replace(termWhite,""))
+    stdout.styledWrite(fgWhite, txt.replace(termWhite,"").replace(termClear,""))
   elif txt.startsWith(termBgBlack):
-    stdout.styledWrite(termBgBlack, txt.replace(termBgBlack,""))
+    stdout.styledWrite(bgBlack, txt.replace(termBgBlack,"").replace(termClear,""))
   elif txt.startsWith(termBgRed):
-    stdout.styledWrite(termBgRed, txt.replace(termBgRed,""))
+    stdout.styledWrite(bgRed, txt.replace(termBgRed,"").replace(termClear,""))
   elif txt.startsWith(termBgGreen):
-    stdout.styledWrite(termBgGreen, txt.replace(termBgGreen,""))
+    stdout.styledWrite(bgGreen, txt.replace(termBgGreen,"").replace(termClear,""))
   elif txt.startsWith(termBgYellow):
-    stdout.styledWrite(termBgYellow, txt.replace(termBgYellow,""))
+    stdout.styledWrite(bgYellow, txt.replace(termBgYellow,"").replace(termClear,""))
   elif txt.startsWith(termBgBlue):
-    stdout.styledWrite(termBgYellow, txt.replace(termBgYellow,""))
+    stdout.styledWrite(bgYellow, txt.replace(termBgYellow,"").replace(termClear,""))
   elif txt.startsWith(termBgMagenta):
-    stdout.styledWrite(termBgMagenta, txt.replace(termBgMagenta,""))
+    stdout.styledWrite(bgMagenta, txt.replace(termBgMagenta,"").replace(termClear,""))
   elif txt.startsWith(termBgCyan):
-    stdout.styledWrite(termBgCyan, txt.replace(termBgCyan,""))
+    stdout.styledWrite(bgCyan, txt.replace(termBgCyan,"").replace(termClear,""))
   elif txt.startsWith(termBgWhite):
-    stdout.styledWrite(termBgWhite, txt.replace(termBgWhite,""))
+    stdout.styledWrite(bgWhite, txt.replace(termBgWhite,"").replace(termClear,""))
   elif txt.startsWith(termClear):
-    stdout.styledWrite(termClear, txt.replace(termClear,""))
-  elif txt.startsWith(termBold):
-    stdout.styledWrite(termBold, txt.replace(termBold,""))
+    stdout.styledWrite(termClear, txt.replace(termClear,"").replace(termClear,""))
+  # elif txt.startsWith(termBold):
+  #   stdout.styledWrite(termBold, txt.replace(termBold,"").replace(termClear,""))
   elif txt.startsWith(termItalic):
-    stdout.styledWrite(termItalic, txt.replace(termItalic,""))
+    stdout.styledWrite(styleItalic, txt.replace(termItalic,"").replace(termClear,""))
   elif txt.startsWith(termUnderline):
-    stdout.styledWrite(termUnderline, txt.replace(termUnderline,""))
+    stdout.styledWrite(styleUnderscore, txt.replace(termUnderline,"").replace(termClear,""))
   elif txt.startsWith(termBlink):
-    stdout.styledWrite(termBlink, txt.replace(termBlink,""))
-  elif txt.startsWith(termNegative):
-    stdout.styledWrite(termNegative, txt.replace(termNegative,""))
-  elif txt.startsWith(termStrikethrough):
-    stdout.styledWrite(termStrikethrough, txt.replace(termStrikethrough,""))
+    stdout.styledWrite(styleBlink, txt.replace(termBlink,"").replace(termClear,""))
+  # elif txt.startsWith(termNegative):
+  #   stdout.styledWrite(termNegative, txt.replace(termNegative,"").replace(termClear,""))
+  # elif txt.startsWith(termStrikethrough):
+  #   stdout.styledWrite(termStrikethrough, txt.replace(termStrikethrough,"").replace(termClear,""))
   else:
     stdout.write txt
 
